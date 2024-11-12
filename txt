@@ -1,0 +1,52 @@
+// src/Router.js
+import React, { useContext } from "react";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer } from "@react-navigation/native";
+import Home from "./Home";
+ // Home ekranını doğru içe aktarıyoruz
+import Register from "./Screen/Auth/Register";
+import Login from "./Screen/Auth/Login";
+ // Note ekranını içe aktarıyoruz
+
+
+const Stack = createNativeStackNavigator();
+
+const Router = () => {
+
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        {token ? (
+          // Eğer kullanıcı giriş yaptıysa Note ekranına yönlendir
+          <Stack.Screen
+            name=""
+            component={}
+            options={{ headerShown: false }}
+          />
+        ) : (
+          <>
+            {/* Kullanıcı giriş yapmadıysa Home, Register ve Login ekranlarını göster */}
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Register"
+              component={Register}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{ headerShown: false }}
+            />
+          </>
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default Router;
